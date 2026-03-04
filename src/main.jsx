@@ -3,23 +3,38 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
-async function fetchPokemons(){
+async function fetchPokemon(id){
   try {
     let response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/?offset=20&limit=10`,
+      `https://pokeapi.co/api/v2/pokemon/${id}`,
     );
     let json = await response.json();
     return json;
   } catch {
-    throw new Error("Invalid city name");
+    throw new Error("Couldn't fetch API");
   }
 }
 
-let pokemon = await fetchPokemons()
-console.log(pokemon)
+let pokemons = []
+for(let i=0; i<10; i++){
+  const id = Math.floor(Math.random() * 1001);
+  let pokemon = await fetchPokemon(id)
+  pokemons.push({"name": pokemon.name, "sprite": pokemon.sprites.front_default, "id": id, "isClicked": false})
+}
+
+function shuffleArray(array){
+  return array
+    .map(obj => ({ value: obj, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(obj => obj.value);
+}
+
+console.log(pokemons);
+pokemons = shuffleArray(pokemons)
+console.log(pokemons);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <App pokemons={pokemons}/>
   </StrictMode>,
 )
