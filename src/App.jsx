@@ -1,7 +1,28 @@
+import { useState } from 'react';
 import './App.css'
 import CardsList from './components/CardsList'
 
 function App({ pokemons }) {
+  const [shuffledPokemons, setShuffledPokemons] = useState(pokemons)
+
+  function shufflePokemons(array){
+    setShuffledPokemons(array
+      .map(obj => ({ value: obj, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(obj => obj.value));
+  }
+
+  function handleClick(e){
+    const clickedPokemon = shuffledPokemons.filter(pokemon => pokemon.id == e.target.parentNode.id)[0]
+
+    if(clickedPokemon.isClicked === false){
+      const newPokemons = shuffledPokemons.map(pokemon => pokemon === clickedPokemon ? {...pokemon, isClicked: true} : pokemon)
+      
+      shufflePokemons(newPokemons)
+    } else {
+      console.log("Already clicked")
+    }
+  }
 
   return (
     <>
@@ -16,7 +37,7 @@ function App({ pokemons }) {
         </div>
       </header>
       <main>
-        <CardsList pokemons={pokemons}/>
+        <CardsList pokemons={shuffledPokemons} onClick={handleClick}/>
       </main>
     </>
   )

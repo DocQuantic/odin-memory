@@ -22,17 +22,6 @@ for(let i=0; i<10; i++){
   pokemons.push({"name": pokemon.name, "sprite": pokemon.sprites.front_default, "id": id, "isClicked": false})
 }
 
-function shuffleArray(array){
-  return array
-    .map(obj => ({ value: obj, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(obj => obj.value);
-}
-
-console.log(pokemons);
-pokemons = shuffleArray(pokemons)
-console.log(pokemons);
-
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App pokemons={pokemons}/>
