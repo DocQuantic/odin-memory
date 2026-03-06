@@ -1,42 +1,67 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+*{
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body{
+  display: flex;
+  flex-direction: column;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#root{
+  width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+header{
+  background-color: antiquewhite;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 1rem;
 }
 
-.card {
-  padding: 2em;
+.scores{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  margin-right: 2rem;
 }
 
-.read-the-docs {
-  color: #888;
+main{
+  display: grid;
+  grid-template-columns: repeat(5, 200px);
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 4rem;
+}
+
+.card{
+  background-color: yellow;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card > p{
+  font-size: 1.5rem;
+  background-color: antiquewhite;
+  width: fit-content;
+  padding: 0.3rem 0.7rem;
+  margin: 0.4rem;
+  border-radius: 10px;
+}
+
+.card > img{
+  width: 100%;
+}
+
+.card > p::first-letter{
+  text-transform: capitalize;
+}
+
+.card:hover{
+  background-color: aliceblue;
 }

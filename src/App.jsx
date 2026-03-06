@@ -4,6 +4,8 @@ import CardsList from './components/CardsList'
 
 function App({ pokemons }) {
   const [shuffledPokemons, setShuffledPokemons] = useState(pokemons)
+  const [score, setScore] = useState(0)
+  const [bestScore, setBetScore] = useState(0)
 
   function shufflePokemons(array){
     setShuffledPokemons(array
@@ -17,10 +19,14 @@ function App({ pokemons }) {
 
     if(clickedPokemon.isClicked === false){
       const newPokemons = shuffledPokemons.map(pokemon => pokemon === clickedPokemon ? {...pokemon, isClicked: true} : pokemon)
-      
+      setScore(score+1)
       shufflePokemons(newPokemons)
     } else {
-      console.log("Already clicked")
+      setScore(0)
+      if(bestScore<score){
+        setBetScore(score)
+      }
+      setShuffledPokemons(pokemons)
     }
   }
 
@@ -32,8 +38,8 @@ function App({ pokemons }) {
           <p>Get points by clicking on an image but don't click on any more than once !</p>
         </div>
         <div className="scores">
-          <p>Score: 0</p>
-          <p>Best: 0</p>
+          <p>Score: {score}</p>
+          <p>Best: {bestScore}</p>
         </div>
       </header>
       <main>

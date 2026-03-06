@@ -1,5 +1,3 @@
-import { useState } from "react"
-
 export default function Card({pokemon, onClick}){
 
     return(
@@ -7,7 +5,6 @@ export default function Card({pokemon, onClick}){
             <div className="card" id={pokemon.id} onClick={onClick}>
                 <img src={pokemon.sprite}></img>
                 <p>{pokemon.name}</p>
-                <p>{pokemon.isClicked ? "clicked" : "unclicked"}</p>
             </div>
         </>
     )
